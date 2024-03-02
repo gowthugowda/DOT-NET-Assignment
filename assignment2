@@ -1,0 +1,30 @@
+using System;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string inputString = "The date is 02152024 and another date is 12312021, but 12345 is not a valid date.";
+        FindValidDates(inputString);
+    }
+
+    static void FindValidDates(string input)
+    {
+        // Define the regular expression pattern to match MMDDYYYY format
+        string pattern = @"\b(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(\d{4})\b";
+
+        // Create a Regex object
+        Regex regex = new Regex(pattern);
+
+        // Find matches in the input string
+        MatchCollection matches = regex.Matches(input);
+
+        // Print valid dates found
+        Console.WriteLine("Valid dates found:");
+        foreach (Match match in matches)
+        {
+            Console.WriteLine(match.Value);
+        }
+    }
+}
